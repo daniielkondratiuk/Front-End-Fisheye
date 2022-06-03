@@ -1,0 +1,4 @@
+.idea
+.DS_Store
+assets/photographers/*
+!./assets/photographers/account.png
