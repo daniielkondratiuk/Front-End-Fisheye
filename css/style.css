@@ -33,6 +33,7 @@ h1 {
 }
 
 .photographer_section article {
+    cursor: pointer;
     justify-self: center;
     display: flex;
     justify-content: center;
@@ -40,18 +41,20 @@ h1 {
     flex-direction: column;
 }
 
-.photographer_section article h2 {
+.photographer_section .card-name {
     color: #D3573C;
     font-size: 36px;
     margin: 20px 0 10px 0;
 }
 
-.photographer_section article img {
+.photographer_section .card-img {
     height: 200px;
     width: 200px;
     border-radius: 50%;
+    object-fit: cover;
 }
-.photographer_section article .content {
+.photographer_section .content {
+    cursor: default;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -59,13 +62,13 @@ h1 {
     gap: 3px;
 }
 
-.photographer_section article .content h3 {
+.photographer_section .content .content h3 {
     margin : 5px 0;
     color: #901C1C;
 }
-.photographer_section article .content p {
+.photographer_section .content p {
     margin : 5px 0;
 }
-.photographer_section article .content span {
+.photographer_section .content span {
     color: #757575;
 }

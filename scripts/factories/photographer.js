@@ -1,6 +1,5 @@
 export default function photographerFactory(data) {
     const {name, id, city, country, tagline, price, portrait} = data
-
     const picture = `assets/photographers/${portrait}`
 
     function getUserCardDOM() {
@@ -20,7 +19,7 @@ export default function photographerFactory(data) {
         article.setAttribute('data-id', id)
         img.setAttribute("src", picture)
 
-        //Set values for DOM elements
+        //Set text values for DOM elements
         h2.textContent = name
         location.textContent = `${city}, ${country}`
         description.textContent = tagline
@@ -30,9 +29,31 @@ export default function photographerFactory(data) {
         content.append(location, description, priceParHours)
         article.append(img, h2, content)
         //Return the DOM elements
-
         return (article)
     }
 
-    return {name, picture, getUserCardDOM}
+    function getUserImageDOM() {
+        const article = document.createElement('article')
+        const img = document.createElement('img')
+        img.classList.add('card-img')
+        img.setAttribute("src", picture)
+        img.setAttribute("alt", name)
+        article.append(img)
+        return article
+    }
+
+    function getUserInfoDOM() {
+        const title = document.createElement('h1')
+        const location = document.createElement('h3')
+        const description = document.createElement('p')
+        const content = document.createElement('div')
+
+        title.textContent = name
+        location.textContent = `${city}, ${country}`
+        description.textContent = tagline
+        content.append(title, location, description)
+        return content
+    }
+
+    return {name, picture, getUserCardDOM, getUserImageDOM, getUserInfoDOM}
 }

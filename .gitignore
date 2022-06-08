@@ -1,4 +1,7 @@
 .idea
 .DS_Store
 assets/photographers/*
+assets/images/*
+assets/videos/*
 !./assets/photographers/account.png
+!./assets/images/logo.png
