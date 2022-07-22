@@ -15,16 +15,28 @@ function slider(media, index) {
             sliderImg.style.display = 'none'
             sliderVideo.style.display = 'block'
             sliderVideo.src = `./assets/videos/${slideInfo[index].url}`
+            sliderVideo.alt = slideInfo[index].title
         } else {
             sliderVideo.style.display = 'none'
             sliderImg.style.display = 'block'
             sliderImg.src = `./assets/images/${slideInfo[index].url}`
+            sliderImg.alt = slideInfo[index].title
+
         }
     }
 
     slider.classList.add('open')
     sliderTitle.innerHTML = slideInfo[index].title
     makeSliderByType()
+    addEventListener('keydown', ({key}) => {
+        if (key === 'ArrowLeft') {
+            changeSlide('prev')
+        } else if (key === 'ArrowRight') {
+            changeSlide('next')
+        } else if (key === 'Escape') {
+            slider.classList.remove('open')
+        }
+    })
 
     function changeSlide(direction) {
         if (direction === 'prev') {

@@ -7,7 +7,11 @@
     margin: 0 100px;
     padding: 0 50px;
 }
-/*TODO: равномерое отоброжение элементов*/
+.photograph-header__description {
+    display: flex;
+    flex-direction: column;
+    gap: 17px
+}
 .photograph-header > *:nth-child(1n) {
     flex: 1;
 }
@@ -61,6 +65,7 @@
 
 .modal header {
     justify-content: space-between;
+    align-items: baseline;
     width: 100%;
     height: auto;
 }
@@ -227,15 +232,99 @@ form textarea {
 .card {
 }
 
-.card-img {
+.card-img, .card-video {
     height: 300px;
     width: 350px;
     border-radius: 5px;
     object-fit: cover;
 }
 .card-description {
+    padding-top: 10px;
     color: #901C1C;
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+.slider {
+    display: none;
+}
+.slider.open {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: #fff;
+    backdrop-filter: blur(10px);
+    height: 100vh;
+}
+body:has(.open) body {
+    overflow: hidden;
+}
+
+body .slider.open {
+    overflow: hidden;
+}
+.slider__content {
+    height: 85%;
+}
+.slider__item {
+    position: relative;
+    height: 95%;
+}
+.slider__img,.slider__video {
+    padding: 0 90px;
+    width: 700px;
+    height: 100%;
+    object-fit: cover;
+}
+.slider__title {
+    height: 5%;
+    padding: 12px 90px;
+    font-size: 24px;
+    color: #901C1C;
+    line-height: 31px;
+}
+.slider__controller {
+    position: absolute;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+}
+.slider__controller.prev {
+    top: 50%;
+    left: 30px;
+    transform: translateY(-50%);
+}
+.slider__controller.next {
+    top: 50%;
+    right: 30px;
+    transform: translateY(-50%);
+}
+.slider__controller.close {
+    top: 10px;
+    right: 30px;
+}
+
+.likes_sticker {
+    position: fixed;
+    bottom: 0;
+    right: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #DB8876;
+    height: 60px;
+    width: 376px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    padding: 0 30px;
+    font-size: 24px;
+
 }

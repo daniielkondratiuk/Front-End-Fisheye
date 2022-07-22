@@ -19,9 +19,9 @@
         <div class="select_wrapper">
             <span>Trier par</span>
             <div class="select" id="select">
-                <span class="select_option checked" data-value="likes">Popularité</span>
-                <span class="select_option" data-value="date">Date</span>
-                <span class="select_option" data-value="title">Titre</span>
+                <span class="select_option checked" tabindex="0" data-value="likes">Popularité</span>
+                <span class="select_option" tabindex="0" data-value="date">Date</span>
+                <span class="select_option" tabindex="0" data-value="title">Titre</span>
             </div>
         </div>
         <div class="photograph-cards">
@@ -32,29 +32,43 @@
 			<div class="modal">
 				<header>
           <h2>Contactez-moi</h2>
-          <img src="assets/icons/close.svg" onclick="closeModal()" />
+          <img src="assets/icons/close.svg" onclick="closeModal()" tabindex="0" aria-label="close" />
         </header>
 				<form>
 					<div>
 						<label>Prénom</label>
-						<input type="text" />
+						<input aria-label="Prénom" type="text" />
 					</div>
                     <div>
                         <label>Nom</label>
-                        <input type="text" />
+                        <input aria-label="Nom" type="text" />
                     </div>
                     <div>
                         <label>Email</label>
-                        <input type="email"/>
+                        <input aria-label="Email" type="email"/>
                     </div>
                     <div>
                         <label>Votre message</label>
-                        <textarea></textarea>
+                        <textarea aria-label="Votre message"></textarea>
                     </div>
-          <button class="contact_button">Envoyer</button>
+          <button class="contact_button" aria-label="Envoyer">Envoyer</button>
 				</form>
 			</div>
 		</div>
+    <div id="slider" class="slider">
+        <div class="slider__content">
+            <div class="slider__item">
+                <img class="slider__img" src="#" alt="#">
+                <video class="slider__video" src="#" controls></video>
+                <img src="assets/images/prev.png" class="slider__controller prev">
+                <img src="assets/images/next.png" class="slider__controller next">
+                <img src="assets/images/close.png" alt="close" tabindex="0" aria-label="close" class="slider__controller close" >
+            </div>
+            <h4 class="slider__title">Arc-en-ciel</h4>
+        </div>
+    </div>
+    <div id="sticker" class="likes_sticker">
+    </div>
     <script type="module" src="/scripts/pages/photographer.js"></script>
     <script src="/scripts/utils/contactForm.js"></script>
   </body>
