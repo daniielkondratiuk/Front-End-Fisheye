@@ -246,6 +246,14 @@ form textarea {
     align-items: center;
 }
 
+.card-likes {
+    cursor: pointer;
+}
+
+.card-likes .fa-heart {
+    pointer-events: none;
+}
+
 .slider {
     display: none;
 }

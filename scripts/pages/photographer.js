@@ -8,10 +8,10 @@ const searchParam = getSearchParam('id')
 const select = document.querySelector('#select')
 let {photographers, media} = await getData(URL)
 let portfolio = media.filter(el => el?.photographerId === searchParam)
-const totalLikes = portfolio.reduce((acc, el) => acc + el.likes, 0)
+let totalLikes = portfolio.reduce((acc, el) => acc + el.likes, 0)
 
 
-document.addEventListener('focusin', ({target})=> {
+document.addEventListener('focusin', ({target}) => {
     if (target.classList.contains('select_option')) {
         select.classList.add('open')
         const orderBy = target.getAttribute('data-value')
@@ -34,7 +34,7 @@ document.addEventListener('focusin', ({target})=> {
         target.addEventListener('keydown', ({key}) => {
             if (key === 'Enter') {
                 const index = Number.parseInt(target.dataset.index)
-                slider(portfolio,index)
+                slider(portfolio, index)
             }
         })
     }
@@ -47,7 +47,7 @@ document.addEventListener('focusin', ({target})=> {
     }
 })
 
-document.addEventListener('focusout', ({target})=> {
+document.addEventListener('focusout', ({target}) => {
     if (target.classList.contains('select_option')) {
         select.classList.remove('open')
     }
@@ -85,11 +85,11 @@ function displayData(photographer) {
 function renderMedia() {
     const photographCards = document.querySelector('.photograph-cards')
     photographCards.innerHTML = ''
-    portfolio.forEach((el,index) => photographCards.insertAdjacentHTML('beforeend', getCardTemplate(el,index)))
+    portfolio.forEach((el, index) => photographCards.insertAdjacentHTML('beforeend', getCardTemplate(el, index)))
 }
 
-function getCardTemplate(el,index) {
-    const {title,likes,image,video} = el
+function getCardTemplate(el, index) {
+    const {title, likes, image, video} = el
     const imageHtml = image ? `<img class="card-img" data-index="${index}" tabindex="0" aria-label="photo ${title}" src="./assets/images/${image}" alt="${title}">` : ''
     const videoHtml = video ? `<video class="card-video" data-index="${index}" tabindex="0" aria-label="videos ${title}" src="./assets/videos/${video}" controls></video>` : ''
     return `
@@ -98,7 +98,7 @@ function getCardTemplate(el,index) {
             ${videoHtml}
             <div class="card-description">
                 <h3 class="card-title" tabindex="0" aria-label="${title}">${title}</h3>
-                <div class="card-likes" tabindex="0" aria-label="Have ${likes}">${likes} <i class="fa-solid fa-heart"></i></div>
+                <div class="card-likes" data-like="${likes}" tabindex="0" aria-label="Have ${likes}">${likes} <i class="fa-regular fa-heart"></i></div>
             </div>
         </div>
     `
@@ -111,6 +111,7 @@ function sortByOrder(arr, order = 'likes') {
         portfolio = arr.sort((a, b) => a[order]?.localeCompare(b[order]))
     }
 }
+
 function addNameToContactForm(name) {
     const form = document.querySelector('#contact_modal')
     const placeForNameHTMl = form.querySelector('h2')
@@ -118,13 +119,28 @@ function addNameToContactForm(name) {
     placeForNameHTMl.insertAdjacentHTML('beforeend', nameHTML)
 }
 
+
+
 function getSticker(selector) {
     const sticker = document.getElementById(selector)
     const likes = `<span>${totalLikes} <i class="fa-solid fa-heart"></i></span>`
     const price = `<span>148€ / jour</span>`
-    sticker.insertAdjacentHTML('beforeend', likes)
-    sticker.insertAdjacentHTML('beforeend', price)
+    sticker.innerHTML = likes + price
+}
 
+function toggleLike(el) {
+    el.classList.toggle('liked')
+    if (el.classList.contains('liked')) {
+        el.dataset.like = Number(el.dataset.like) + 1
+        el.innerHTML = `${el.dataset.like} <i class="fa-solid fa-heart"></i>`
+        totalLikes++
+
+    } else {
+        el.dataset.like = Number(el.dataset.like) - 1
+        el.innerHTML = `${el.dataset.like} <i class="fa-regular fa-heart"></i>`
+        totalLikes--
+    }
+    getSticker('sticker')
 }
 
 async function init() {
@@ -139,11 +155,14 @@ async function init() {
 document.addEventListener('click', (event) => {
     if (event.target.classList.contains('card-video')) {
         const index = Number.parseInt(event.target.dataset.index)
-        slider(portfolio,index)
+        slider(portfolio, index)
     }
     if (event.target.classList.contains('card-img')) {
         const index = Number.parseInt(event.target.dataset.index)
-        slider(portfolio,index)
+        slider(portfolio, index)
+    }
+    if (event.target.classList.contains('card-likes')) {
+        toggleLike(event.target)
     }
 })
 
