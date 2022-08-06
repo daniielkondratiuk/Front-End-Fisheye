@@ -119,7 +119,18 @@ function addNameToContactForm(name) {
     placeForNameHTMl.insertAdjacentHTML('beforeend', nameHTML)
 }
 
-
+document.querySelector('form').addEventListener('submit', (e) => {
+    e.preventDefault()
+    const values = Object.fromEntries(new FormData(e.target).entries())
+    for (const value in values) {
+        if (values[value].trim() === '') {
+            alert('Please fill all fields')
+            return
+        }
+    }
+    alert('Thank you for your message')
+    closeModal()
+})
 
 function getSticker(selector) {
     const sticker = document.getElementById(selector)
