@@ -128,8 +128,11 @@ document.querySelector('form').addEventListener('submit', (e) => {
             return
         }
     }
-    alert('Thank you for your message')
+    console.log(values)
     closeModal()
+    setTimeout(() => {
+        alert('Thank you for your message')
+    }, 200)
 })
 
 function getSticker(selector) {
