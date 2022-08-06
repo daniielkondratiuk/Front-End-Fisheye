@@ -21,7 +21,6 @@ function slider(media, index) {
             sliderImg.style.display = 'block'
             sliderImg.src = `./assets/images/${slideInfo[index].url}`
             sliderImg.alt = slideInfo[index].title
-
         }
     }
 

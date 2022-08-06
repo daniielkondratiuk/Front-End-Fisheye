@@ -12,21 +12,6 @@ async function displayData(photographers) {
     })
 }
 
-// function redirectToPhotographer(target) {
-//     window.location.href = `./photographer.html?id=${target.parentNode.dataset.id}`
-// }
-
-// document.addEventListener('click', ({target}) => {
-//     if (target.classList.contains('card-img') || target.classList.contains('card-name')) {
-//         redirectToPhotographer(target)
-//     }
-// })
-// document.addEventListener('keydown', ({target, key}) => {
-//     if (key === 'Enter' && target.classList.contains('card-img') || key === 'Enter' && target.classList.contains('card-name')) {
-//         redirectToPhotographer(target)
-//     }
-// })
-
 async function init() {
     const {photographers} = await getData(URL)
     await displayData(photographers)
