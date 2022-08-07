@@ -2,6 +2,7 @@ import getData from '../utils/api/getData.js'
 import getSearchParam from '../utils/getSearchParam.js'
 import photographerFactory from "../factories/photographer.js"
 import slider from "../utils/slider.js";
+import clearFormValues from "../utils/clearFormValues.js";
 
 const URL = '../../data/photographers.json'
 const searchParam = getSearchParam('id')
@@ -129,6 +130,7 @@ document.querySelector('form').addEventListener('submit', (e) => {
         }
     }
     console.log(values)
+    clearFormValues(e.target)
     closeModal()
     setTimeout(() => {
         alert('Thank you for your message')
